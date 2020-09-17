@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+    {% include 'includes/_messages.html' %}
+      <h1>Administrar perfiles</h1>
+      <a href="/agregar_perfil" class="btn btn-success">Agregar perfil</a>
+      <hr>
+      <table class="table table-striped">
+        <tr>
+          <th></th>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Nombre completo</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for perfil in perfiles %}
+          <tr>
+            <td><input type="hidden" name="perfil_codigo" value="{{perfil.0}}"></td>
+            <td>{{perfil.0}}</td>
+            <td>{{perfil.1}}</td>
+            <td>{{perfil.2}}</td>
+            <td><a href="editar_perfil/{{perfil.0}}" class="btn btn-warning">Editar</a></td>
+            <td>
+              <form action="{{url_for('eliminar_perfil', codigo=perfil.0)}}" method="post">
+                  <input type="hidden" name="_method" value="DELETE">  
+                  <input type="submit" value="Borrar" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar el perfil?')">      
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}

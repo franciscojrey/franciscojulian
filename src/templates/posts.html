@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        {% include 'includes/_messages.html' %}
+        <h1>Tareas</h1>
+        <ul class="list-group">
+        {% for post in posts %}
+            <li class="list-group-item"><a href="ver_post/{{post.0}}">{{post.1}}</a></li>
+            <li class="list-group-item">{{post.2 | safe}}</li>
+            <hr class="my-4">
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

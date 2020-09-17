@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+    <div class="jumbotron">
+        {% include 'includes/_messages.html' %}
+        <h1 class="display-4">Notas</h1>
+        <p class="lead">Elija la materia en la cual desea ingresar las notas. Cuando haya terminado, presione el botón Guardar para terminar el proceso.</p>
+        <table class="table table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Seleccione una materia</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <form action="/cargar_notas" method="POST">
+                    <tr>
+                        <td>
+                            <select name="materia" class="form-control" id="exampleFormControlSelect1" >
+                                <option value=""></option>
+                                {% for i in materias %}
+                                    <option value="{{ i.5 }}">Nivel: {{ i.0 }} - Curso: {{ i.1 }} - División: {{ i.2 }} - Materia: {{ i.4 }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-lg" type="submit">
+                                Elegir
+                            </button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+          </table>
+        <hr class="my-4">
+        <table class="table table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Apellido</th>
+                <th scope="col">Nombre</th>
+                <th scope="col"></th>
+                <th scope="col">Primer trimestre</th>
+                <th scope="col">Segundo cuatrimestre</th>
+                <th scope="col">Tercer cuatrimestre</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <form action="/actualizar_notas" method="POST">
+                {% for row in planilla_alumnos_notas %}
+                        <tr>
+                            <td scope="row">{{ row.4 }}</td>
+                            <td>{{ row.5 }}</td>
+                            <td><input type="hidden" name="ALU" value="{{ row.0 }}"></td>
+                            <td><input type="number" min="1" max="10" name="NOTA1" value="{{ row.1 }}" step=".5" required></td>
+                            <td><input type="number" min="1" max="10" name="NOTA2" value="{{ row.2 }}" step=".5" required></td>
+                            <td><input type="number" min="1" max="10" name="NOTA3" value="{{ row.3 }}" step=".5" required></td>
+                            <td><input type="hidden" name="materia" value="{{ row.6 }}"></td>
+                        </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-success btn-lg" type="submit">
+                            Guardar
+                        </button>
+                    </td>
+                </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Para guardar el valor del select de la materia al presionar "Elegir"
+        // Hacer que al cerrar la ventana o salir se borre esto
+        document.addEventListener('DOMContentLoaded', function () {
+           var input = document.getElementById('exampleFormControlSelect1');
+           if (localStorage['exampleFormControlSelect1']) { // if job is set
+               input.value = localStorage['exampleFormControlSelect1']; // set the value
+           }
+           input.onchange = function () {
+                localStorage['exampleFormControlSelect1'] = this.value; // change localStorage on change
+            }
+        });
+
+        $(window).unload(function(){
+            localStorage.clear();
+        });
+        </script>
+{% endblock %} 

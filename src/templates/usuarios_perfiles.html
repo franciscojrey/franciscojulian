@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Asociar perfiles y usuarios</h1>
+        {% include 'includes/_messages.html' %}
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Perfil</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <form action="">
+                    <tr>
+                        <td>
+                            <select name="usuario" class="form-control" id="exampleFormControlSelect1" >
+                                <option value=""></option>
+                                {% for usuario in usuarios %}
+                                    <option value="{{ usuario.0 }}">Código: {{usuario.0}} - Nombre: {{usuario.1}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <select name="perfil" class="form-control" id="exampleFormControlSelect1" >
+                                <option value=""></option>
+                                {% for perfil in perfiles %}
+                                    <option value="{{ perfil.0 }}">Código: {{usuario.0}} - Nombre:{{perfil.1}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-lg" type="submit">
+                                Guardar
+                            </button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+        <hr class="my-4">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Código del usuario</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Código del perfil</th>
+                    <th scope="col">Perfil</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

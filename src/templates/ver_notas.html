@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Notas</h1>
+    {% include 'includes/_messages.html' %}
+    <div class="jumbotron">
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Materia</th>
+                <th scope="col">Primer trimestre</th>
+                <th scope="col">Segundo cuatrimestre</th>
+                <th scope="col">Tercer cuatrimestre</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in notas_materias %}
+                <tr>
+                    <td>{{i.0}}</td>
+                    <td>{{i.1}}</td>
+                    <td>{{i.2}}</td>
+                    <td>{{i.3}}</td>
+                </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

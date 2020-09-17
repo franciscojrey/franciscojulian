@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        {% include 'includes/_messages.html' %}
+        <h1>Agregar perfil</h1>
+        <hr>
+        <table class="table table-striped">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Nombre completo</th>
+            <th></th>
+        </tr>
+        <tr>
+            <form method="POST">
+                <td><input type="text" name="codigo_perfil" class="form-control" value=""></td>
+                <td><input type="text" name="nombre_perfil" class="form-control" value=""></td>
+                <td><input type="text" name="nombre_completo_perfil" class="form-control" value=""></td>
+                <td><button type="submit" class="btn btn-primary">Agregar</button></td>
+
+            </form>
+        </tr>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% include 'includes/_messages.html' %}
+<div class="jumbotron mt-4">
+	<h1 class="display-4">¡Hola!</h1>
+	<p class="lead">Bienvenido al sitio web del colegio Misericordia.</p>
+	<hr class="my-4">
+	<p>En este sitio web podrá cargar notas y tareas de los alumnos.</p>
+	{% if session.loggeado == NULL %}
+		<a href="/inicio_sesion" class="btn btn-primary btn-lg">Iniciar sesión</a>
+	{% endif %}
+</div>
+{% endblock %}

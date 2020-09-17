@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        {% include 'includes/_messages.html' %}
+        <h1>Administrar tareas</h1>
+        <a href="/agregar_post" class="btn btn-success">Agregar tarea</a>
+        <hr>
+        <table class="table table-striped">
+            <tr>
+                <th></th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Fecha</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for article in posts %}
+                <tr>
+                    <!-- REVISAR SI ESTA BIEN EL NAME DE ESTE INPUT -->
+                    <td><input type="hidden" name="art" value="{{article.0}}"></td>
+                    <td>{{article.1}}</td>
+                    <td>{{article.2}}</td>
+                    <td>{{article.3}}</td>
+                    <td><a href="editar_post/{{article.0}}" class="btn btn-warning">Editar</a></td>
+                    <td>
+                        <form action="{{url_for('eliminar_post', id=article.0)}}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">  
+                            <input type="submit" value="Borrar" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar el post?')">      
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

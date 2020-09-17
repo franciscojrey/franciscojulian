@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>{{post.0}}</h1>
+        <small>Creado por {{post.1}} el día {{post.3}}</small>
+        <hr>
+        <div>
+            <p>{{post.2 | safe}}</p>
+        </div>
+    </div>
+{% endblock %}
